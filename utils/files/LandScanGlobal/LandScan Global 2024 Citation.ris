@@ -1,0 +1,31 @@
+1.
+TY  - DATA
+AU  - Lebakula, Viswadeep
+AU  - Gonzales, Jack
+AU  - Stipek, Clinton
+AU  - Tsybina, Eve
+AU  - Zimmer, Andrew
+AU  - Nukavarapu, Nivedita
+AU  - Byeonghwa, Jeong
+AU  - Reynolds, Brandyn
+AU  - Kaufman, Jason
+AU  - Fan, Junchuan
+AU  - Martin, Aubre
+AU  - Buck, Whitson
+AU  - Basford, Scott
+AU  - Faxon, Abigail
+AU  - Meade, Shannon
+AU  - Urban, Marie
+PY  - 2025
+TI  - LandScan 2024
+CY  - Oak Ridge, TN
+PB  - Oak Ridge National Laboratory
+SE  - August 04, 2025
+T3  - LandScan Global
+ET  - 2024
+RI  - Global
+C1  - CY 2024
+C3  - raster digital data
+AB  - The LandScan Global 2024 provides ambient and un-warned population estimates at a 30 arc-second resolution worldwide. This release incorporates multiple machine learning models trained on geospatial datasets and the 2023 LandScan Global dataset. For each country, a model output is selected among the 55 ML model outputs produced following a thorough review. The 2024 version builds on previous iterations by integrating key advancements, such as the inclusion of damaged structures, MapSpace, IDPS/Refugees and other new input datasets. It also improves the review workflow and accelerates updates, enhancing the transparency, reproducibility, and reliability of the global population estimates.
+DO  - https://doi.org/10.48690/1532445
+ER  - 

@@ -1,3 +1,10 @@
+
+
+#files
+*.grib2
+*.idx
+*.csv
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]

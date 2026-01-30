@@ -1,0 +1,672 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MD_Metadata xmlns="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:gts="http://www.isotc211.org/2005/gts" xmlns:srv="http://www.isotc211.org/2005/srv" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.isotc211.org/2005/gmd https://www.isotc211.org/2005/gmd/metadataEntity.xsd">
+	<language>
+		<LanguageCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#LanguageCode" codeListValue="eng">eng</LanguageCode>
+	</language>
+	<hierarchyLevel>
+		<MD_ScopeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_ScopeCode" codeListValue="dataset">dataset</MD_ScopeCode>
+	</hierarchyLevel>
+	<contact>
+		<CI_ResponsibleParty>
+			<organizationName>
+				<gco:CharacterString> Geospatial Science and Human Security Division, Oak Ridge National Laboratory</gco:CharacterString>
+			</organizationName>
+			<contactInfo>
+				<CI_Contact>
+					<address>
+						<CI_Address>
+							<electronicMailAddress>
+								<gco:CharacterString>landscan@ornl.gov</gco:CharacterString>
+							</electronicMailAddress>
+						</CI_Address>
+					</address>
+					<onlineResource>
+						<CI_OnlineResource>
+							<linkage>
+								<URL>https://landscan.ornl.gov</URL>
+							</linkage>
+						</CI_OnlineResource>
+					</onlineResource>
+				</CI_Contact>
+			</contactInfo>
+			<role>
+				<CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="pointOfContact" codeSpace="ISOTC211/19115">pointOfContact</CI_RoleCode>
+			</role>
+		</CI_ResponsibleParty>
+	</contact>
+	<dateStamp>
+		<gco:Date>2025-08-04</gco:Date>
+	</dateStamp>
+	<metadataStandardName>
+		<gco:CharacterString>ISO 19139 Geographic Information - Metadata - Implementation Specification</gco:CharacterString>
+	</metadataStandardName>
+	<metadataStandardVersion>
+		<gco:CharacterString>2007</gco:CharacterString>
+	</metadataStandardVersion>
+	<identificationInfo>
+		<MD_DataIdentification>
+			<citation>
+				<CI_Citation>
+					<title>
+						<gco:CharacterString>LandScan Global 2024</gco:CharacterString>
+					</title>
+					<date>
+						<CI_Date>
+							<date>
+								<gco:Date>2025-08-04</gco:Date>
+							</date>
+							<dateType>
+								<CI_DateTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode" codeListValue="publication" codeSpace="ISOTC211/19115">publication</CI_DateTypeCode>
+							</dateType>
+						</CI_Date>
+					</date>
+					<citedResponsibleParty>
+						<CI_ResponsibleParty>
+							<organizationName>
+								<gco:CharacterString> Geospatial Science and Human Security Division, Oak Ridge National Laboratory </gco:CharacterString>
+							</organizationName>
+							<role>
+								<CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="originator" codeSpace="ISOTC211/19115">originator</CI_RoleCode>
+							</role>
+						</CI_ResponsibleParty>
+					</citedResponsibleParty>
+					<presentationForm>
+						<CI_PresentationFormCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_PresentationFormCode" codeListValue="mapDigital" codeSpace="ISOTC211/19115">mapDigital</CI_PresentationFormCode>
+					</presentationForm>
+					<series>
+						<CI_Series>
+							<name>
+								<gco:CharacterString>LandScan Global Population Database</gco:CharacterString>
+							</name>
+							<issueIdentification>
+								<gco:CharacterString>LandScan 2024 Global</gco:CharacterString>
+							</issueIdentification>
+						</CI_Series>
+					</series>
+					<otherCitationDetails>
+						<gco:CharacterString>https://doi.org10.48690/1532445</gco:CharacterString>
+					</otherCitationDetails>
+				</CI_Citation>
+			</citation>
+			<abstract>
+				<gco:CharacterString>The LandScan Global 2024 provides ambient and un-warned population estimates at a 30 arc-second resolution worldwide. This release incorporates multiple machine learning models trained on geospatial datasets and the 2023 LandScan Global dataset. For each country, a model output is selected among the 55 ML model outputs produced following a thorough review. The 2024 version builds on previous iterations by integrating key advancements, such as the inclusion of damaged structures, MapSpace, IDPS/Refugees and other new input datasets. It also improves the review workflow and accelerates updates, enhancing the transparency, reproducibility, and reliability of the global population estimates.</gco:CharacterString>
+			</abstract>
+			<purpose>
+				<gco:CharacterString>LandScan Global 2024 was developed on behalf of the U.S. federal government and is used for rapid consequence and risk assessment as well as emergency planning and management.</gco:CharacterString>
+			</purpose>
+			<credit>
+				<gco:CharacterString> Geospatial Science and Human Security Division, Oak Ridge National Laboratory; US DOD</gco:CharacterString>
+			</credit>
+			<status>
+				<MD_ProgressCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_ProgressCode" codeListValue="completed" codeSpace="ISOTC211/19115">completed</MD_ProgressCode>
+			</status>
+			<pointOfContact>
+				<CI_ResponsibleParty>
+					<organizationName>
+						<gco:CharacterString> Geospatial Science and Human Security Division, Oak Ridge National Laboratory</gco:CharacterString>
+					</organizationName>
+					<contactInfo>
+						<CI_Contact>
+							<address>
+								<CI_Address>
+									<electronicMailAddress>
+										<gco:CharacterString>landscan@ornl.gov</gco:CharacterString>
+									</electronicMailAddress>
+								</CI_Address>
+							</address>
+						</CI_Contact>
+					</contactInfo>
+					<role>
+						<CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="pointOfContact" codeSpace="ISOTC211/19115">pointOfContact</CI_RoleCode>
+					</role>
+				</CI_ResponsibleParty>
+			</pointOfContact>
+			<resourceMaintenance>
+				<MD_MaintenanceInformation>
+					<maintenanceAndUpdateFrequency>
+						<MD_MaintenanceFrequencyCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_MaintenanceFrequencyCode" codeListValue="annually" codeSpace="ISOTC211/19115">annually</MD_MaintenanceFrequencyCode>
+					</maintenanceAndUpdateFrequency>
+				</MD_MaintenanceInformation>
+			</resourceMaintenance>
+			<descriptiveKeywords>
+				<MD_Keywords>
+					<keyword>
+						<gco:CharacterString>population</gco:CharacterString>
+					</keyword>
+					<keyword>
+						<gco:CharacterString>population count</gco:CharacterString>
+					</keyword>
+					<keyword>
+						<gco:CharacterString>LandScan</gco:CharacterString>
+					</keyword>
+					<keyword>
+						<gco:CharacterString>global population</gco:CharacterString>
+					</keyword>
+					<type>
+						<MD_KeywordTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode" codeListValue="theme" codeSpace="ISOTC211/19115">theme</MD_KeywordTypeCode>
+					</type>
+				</MD_Keywords>
+			</descriptiveKeywords>
+			<descriptiveKeywords>
+				<MD_Keywords>
+					<keyword>
+						<gco:CharacterString>Global</gco:CharacterString>
+					</keyword>
+					<keyword>
+						<gco:CharacterString>Worldwide</gco:CharacterString>
+					</keyword>
+					<type>
+						<MD_KeywordTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_KeywordTypeCode" codeListValue="place" codeSpace="ISOTC211/19115">place</MD_KeywordTypeCode>
+					</type>
+				</MD_Keywords>
+			</descriptiveKeywords>
+			<language>
+				<LanguageCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#LanguageCode" codeListValue="eng">eng</LanguageCode>
+			</language>
+			<extent>
+				<EX_Extent>
+					<geographicElement>
+						<EX_GeographicBoundingBox>
+							<westBoundLongitude>
+								<gco:Decimal>-180</gco:Decimal>
+							</westBoundLongitude>
+							<eastBoundLongitude>
+								<gco:Decimal>180</gco:Decimal>
+							</eastBoundLongitude>
+							<southBoundLatitude>
+								<gco:Decimal>-90</gco:Decimal>
+							</southBoundLatitude>
+							<northBoundLatitude>
+								<gco:Decimal>90</gco:Decimal>
+							</northBoundLatitude>
+						</EX_GeographicBoundingBox>
+					</geographicElement>
+				</EX_Extent>
+			</extent>
+			<extent>
+				<EX_Extent>
+					<description>
+						<gco:CharacterString>ground condition</gco:CharacterString>
+					</description>
+					<temporalElement>
+						<EX_TemporalExtent>
+							<extent>
+								<gml:TimeInstant gml:id="_f8338a9663ce80dca34c693f139a7472">
+									<gml:timePosition>2025-08-04</gml:timePosition>
+								</gml:TimeInstant>
+							</extent>
+						</EX_TemporalExtent>
+					</temporalElement>
+				</EX_Extent>
+			</extent>
+			<supplementalInformation>
+				<gco:CharacterString>None</gco:CharacterString>
+			</supplementalInformation>
+		</MD_DataIdentification>
+	</identificationInfo>
+	<dataQualityInfo>
+		<DQ_DataQuality>
+			<scope>
+				<DQ_Scope>
+					<level>
+						<MD_ScopeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_ScopeCode" codeListValue="dataset" codeSpace="ISOTC211/19115">dataset</MD_ScopeCode>
+					</level>
+				</DQ_Scope>
+			</scope>
+			<lineage>
+				<LI_Lineage>
+					<source>
+						<LI_Source>
+							<sourceCitation>
+								<CI_Citation>
+									<title>
+										<gco:CharacterString>Planet OSM (Building and Road Dataset)</gco:CharacterString>
+									</title>
+									<date gco:nilReason="unknown"/>
+									<citedResponsibleParty>
+										<CI_ResponsibleParty>
+											<organizationName>
+												<gco:CharacterString>OpenStreetMap contributors</gco:CharacterString>
+											</organizationName>
+											<role>
+												<CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="originator" codeSpace="ISOTC211/19115">originator</CI_RoleCode>
+											</role>
+										</CI_ResponsibleParty>
+									</citedResponsibleParty>
+								</CI_Citation>
+							</sourceCitation>
+						</LI_Source>
+					</source>
+					<source>
+						<LI_Source>
+							<sourceCitation>
+								<CI_Citation>
+									<title>
+										<gco:CharacterString>Multiple Input Datasets</gco:CharacterString>
+									</title>
+									<date gco:nilReason="unknown"/>
+									<citedResponsibleParty>
+										<CI_ResponsibleParty>
+											<organizationName>
+												<gco:CharacterString>National Geospatial-Intelligence Agency (NGA)</gco:CharacterString>
+											</organizationName>
+											<role>
+												<CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="originator" codeSpace="ISOTC211/19115">originator</CI_RoleCode>
+											</role>
+										</CI_ResponsibleParty>
+									</citedResponsibleParty>
+								</CI_Citation>
+							</sourceCitation>
+						</LI_Source>
+					</source>
+					<source>
+						<LI_Source>
+							<sourceCitation>
+								<CI_Citation>
+									<title>
+										<gco:CharacterString>Building Footprint Extents and Building Damage Indicators(BDI)</gco:CharacterString>
+									</title>
+									<date gco:nilReason="unknown"/>
+									<citedResponsibleParty>
+										<CI_ResponsibleParty>
+											<organizationName>
+												<gco:CharacterString>Oak Ridge National Laboratory</gco:CharacterString>
+											</organizationName>
+											<role>
+												<CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="originator" codeSpace="ISOTC211/19115">originator</CI_RoleCode>
+											</role>
+										</CI_ResponsibleParty>
+									</citedResponsibleParty>
+								</CI_Citation>
+							</sourceCitation>
+						</LI_Source>
+					</source>
+					<source>
+						<LI_Source>
+							<sourceCitation>
+								<CI_Citation>
+									<title>
+										<gco:CharacterString>CIA World Factbook</gco:CharacterString>
+									</title>
+									<date gco:nilReason="unknown"/>
+									<citedResponsibleParty>
+										<CI_ResponsibleParty>
+											<organizationName>
+												<gco:CharacterString>Central Intelligence Agency</gco:CharacterString>
+											</organizationName>
+											<role>
+												<CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="originator" codeSpace="ISOTC211/19115">originator</CI_RoleCode>
+											</role>
+										</CI_ResponsibleParty>
+									</citedResponsibleParty>
+								</CI_Citation>
+							</sourceCitation>
+						</LI_Source>
+					</source>
+					<source>
+						<LI_Source>
+							<sourceCitation>
+								<CI_Citation>
+									<title>
+										<gco:CharacterString>Multi-national Geospatial Co-production Program (MGCP)</gco:CharacterString>
+									</title>
+									<date gco:nilReason="unknown"/>
+									<citedResponsibleParty>
+										<CI_ResponsibleParty>
+											<organizationName>
+												<gco:CharacterString>Multi-national Geospatial Co-production Program (MGCP)</gco:CharacterString>
+											</organizationName>
+											<role>
+												<CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="originator" codeSpace="ISOTC211/19115">originator</CI_RoleCode>
+											</role>
+										</CI_ResponsibleParty>
+									</citedResponsibleParty>
+								</CI_Citation>
+							</sourceCitation>
+						</LI_Source>
+					</source>
+					<source>
+						<LI_Source>
+							<sourceCitation>
+								<CI_Citation>
+									<title>
+										<gco:CharacterString>Administrative boundaries for some selected countries: The Global Administrative Unit Layers (GAUL) dataset, implemented by FAO within the EC FAO Food Security for Action Programme</gco:CharacterString>
+									</title>
+									<date gco:nilReason="unknown"/>
+									<citedResponsibleParty>
+										<CI_ResponsibleParty>
+											<organizationName>
+												<gco:CharacterString>Global Administrative Unit Layers (GAUL)</gco:CharacterString>
+											</organizationName>
+											<role>
+												<CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="originator" codeSpace="ISOTC211/19115">originator</CI_RoleCode>
+											</role>
+										</CI_ResponsibleParty>
+									</citedResponsibleParty>
+								</CI_Citation>
+							</sourceCitation>
+						</LI_Source>
+					</source>
+					<source>
+						<LI_Source>
+							<sourceCitation>
+								<CI_Citation>
+									<title>
+										<gco:CharacterString>Large Scale International Boundaries (LSIB)</gco:CharacterString>
+									</title>
+									<date gco:nilReason="unknown"/>
+									<citedResponsibleParty>
+										<CI_ResponsibleParty>
+											<organizationName>
+												<gco:CharacterString>Office of the Geographer, U.S. Department of State</gco:CharacterString>
+											</organizationName>
+											<role>
+												<CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="originator" codeSpace="ISOTC211/19115">originator</CI_RoleCode>
+											</role>
+										</CI_ResponsibleParty>
+									</citedResponsibleParty>
+								</CI_Citation>
+							</sourceCitation>
+						</LI_Source>
+					</source>
+					<source>
+						<LI_Source>
+							<sourceCitation>
+								<CI_Citation>
+									<title>
+										<gco:CharacterString>Google Buildings</gco:CharacterString>
+									</title>
+									<date gco:nilReason="unknown"/>
+									<citedResponsibleParty>
+										<CI_ResponsibleParty>
+											<organizationName>
+												<gco:CharacterString>Google</gco:CharacterString>
+											</organizationName>
+											<role>
+												<CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="originator" codeSpace="ISOTC211/19115">originator</CI_RoleCode>
+											</role>
+										</CI_ResponsibleParty>
+									</citedResponsibleParty>
+								</CI_Citation>
+							</sourceCitation>
+						</LI_Source>
+					</source>
+					<source>
+						<LI_Source>
+							<sourceCitation>
+								<CI_Citation>
+									<title>
+										<gco:CharacterString>Microsoft Buildings</gco:CharacterString>
+									</title>
+									<date gco:nilReason="unknown"/>
+									<citedResponsibleParty>
+										<CI_ResponsibleParty>
+											<organizationName>
+												<gco:CharacterString>Microsoft</gco:CharacterString>
+											</organizationName>
+											<role>
+												<CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="originator" codeSpace="ISOTC211/19115">originator</CI_RoleCode>
+											</role>
+										</CI_ResponsibleParty>
+									</citedResponsibleParty>
+								</CI_Citation>
+							</sourceCitation>
+						</LI_Source>
+					</source>
+					<source>
+						<LI_Source>
+							<sourceCitation>
+								<CI_Citation>
+									<title>
+										<gco:CharacterString>VIIRS NTL</gco:CharacterString>
+									</title>
+									<date gco:nilReason="unknown"/>
+									<citedResponsibleParty>
+										<CI_ResponsibleParty>
+											<organizationName>
+												<gco:CharacterString>C. D. Elvidge, K. E. Baugh, M. Zhizhin, and F.-C. Hsu( Earth Observation Group, Payne Institute for Public Policy, Colorado School of Mines)</gco:CharacterString>
+											</organizationName>
+											<role>
+												<CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="originator" codeSpace="ISOTC211/19115">originator</CI_RoleCode>
+											</role>
+										</CI_ResponsibleParty>
+									</citedResponsibleParty>
+								</CI_Citation>
+							</sourceCitation>
+						</LI_Source>
+					</source>
+					<source>
+						<LI_Source>
+							<sourceCitation>
+								<CI_Citation>
+									<title>
+										<gco:CharacterString>Coastline Dataset</gco:CharacterString>
+									</title>
+									<date gco:nilReason="unknown"/>
+									<citedResponsibleParty>
+										<CI_ResponsibleParty>
+											<organizationName>
+												<gco:CharacterString>Natural Earth</gco:CharacterString>
+											</organizationName>
+											<role>
+												<CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="originator" codeSpace="ISOTC211/19115">originator</CI_RoleCode>
+											</role>
+										</CI_ResponsibleParty>
+									</citedResponsibleParty>
+								</CI_Citation>
+							</sourceCitation>
+						</LI_Source>
+					</source>
+					<source>
+						<LI_Source>
+							<sourceCitation>
+								<CI_Citation>
+									<title>
+										<gco:CharacterString>Local Climate Zones</gco:CharacterString>
+									</title>
+									<date>
+										<CI_Date>
+											<date>
+												<gco:Date>2022</gco:Date>
+											</date>
+											<dateType>
+												<CI_DateTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode" codeListValue="publication" codeSpace="ISOTC211/19115">publication</CI_DateTypeCode>
+											</dateType>
+										</CI_Date>
+									</date>
+									<citedResponsibleParty>
+										<CI_ResponsibleParty>
+											<organizationName>
+												<gco:CharacterString>Demuzere et al.</gco:CharacterString>
+											</organizationName>
+											<role>
+												<CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="originator" codeSpace="ISOTC211/19115">originator</CI_RoleCode>
+											</role>
+										</CI_ResponsibleParty>
+									</citedResponsibleParty>
+								</CI_Citation>
+							</sourceCitation>
+						</LI_Source>
+					</source>
+					<source>
+						<LI_Source>
+							<sourceCitation>
+								<CI_Citation>
+									<title>
+										<gco:CharacterString>Distance to urban </gco:CharacterString>
+									</title>
+									<date>
+										<CI_Date>
+											<date>
+												<gco:Date>2021</gco:Date>
+											</date>
+											<dateType>
+												<CI_DateTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode" codeListValue="publication" codeSpace="ISOTC211/19115">publication</CI_DateTypeCode>
+											</dateType>
+										</CI_Date>
+									</date>
+									<citedResponsibleParty>
+										<CI_ResponsibleParty>
+											<organizationName>
+												<gco:CharacterString>Zhao et al.</gco:CharacterString>
+											</organizationName>
+											<role>
+												<CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="originator" codeSpace="ISOTC211/19115">originator</CI_RoleCode>
+											</role>
+										</CI_ResponsibleParty>
+									</citedResponsibleParty>
+								</CI_Citation>
+							</sourceCitation>
+						</LI_Source>
+					</source>
+					<source>
+						<LI_Source>
+							<sourceCitation>
+								<CI_Citation>
+									<title>
+										<gco:CharacterString>Building Area (GHS-BUILT-S R2023A - GHS built-up surface grid, derived from Sentinel2 composite and Landsat, multitemporal (1975-2030))</gco:CharacterString>
+									</title>
+									<date>
+										<CI_Date>
+											<date>
+												<gco:Date>2023</gco:Date>
+											</date>
+											<dateType>
+												<CI_DateTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode" codeListValue="publication" codeSpace="ISOTC211/19115">publication</CI_DateTypeCode>
+											</dateType>
+										</CI_Date>
+									</date>
+									<citedResponsibleParty>
+										<CI_ResponsibleParty>
+											<organizationName>
+												<gco:CharacterString>GHSL(European Commission, Joint Research Centre (JRC))</gco:CharacterString>
+											</organizationName>
+											<role>
+												<CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="originator" codeSpace="ISOTC211/19115">originator</CI_RoleCode>
+											</role>
+										</CI_ResponsibleParty>
+									</citedResponsibleParty>
+									<otherCitationDetails>
+										<gco:CharacterString>https://doi.org/10.2905/9F06F36F-4B11-47EC-ABB0-4F8B7B1D72EA</gco:CharacterString>
+									</otherCitationDetails>
+								</CI_Citation>
+							</sourceCitation>
+						</LI_Source>
+					</source>
+					<source>
+						<LI_Source>
+							<sourceCitation>
+								<CI_Citation>
+									<title>
+										<gco:CharacterString> WorldCover 2021 v200: ESA 100m Global LandCover</gco:CharacterString>
+									</title>
+									<date>
+										<CI_Date>
+											<date>
+												<gco:Date>2020</gco:Date>
+											</date>
+											<dateType>
+												<CI_DateTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode" codeListValue="publication" codeSpace="ISOTC211/19115">publication</CI_DateTypeCode>
+											</dateType>
+										</CI_Date>
+									</date>
+									<citedResponsibleParty>
+										<CI_ResponsibleParty>
+											<organizationName>
+												<gco:CharacterString>Zanaga, D., Van De Kerchove, R., Daems, D., De Keersmaecker, W., Brockmann, C., Kirches, G., Wevers, J., Cartus, O., Santoro, M., Fritz, S., Lesiv, M., Herold, M., Tsendbazar, N.E., Xu, P., Ramoino, F., Arino, O., 2022. ESA WorldCover 10 m 2021 v200 </gco:CharacterString>
+											</organizationName>
+											<role>
+												<CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="originator" codeSpace="ISOTC211/19115">originator</CI_RoleCode>
+											</role>
+										</CI_ResponsibleParty>
+									</citedResponsibleParty>
+									<otherCitationDetails>
+										<gco:CharacterString>https://doi.org/10.5281/zenodo.7254221</gco:CharacterString>
+									</otherCitationDetails>
+								</CI_Citation>
+							</sourceCitation>
+						</LI_Source>
+					</source>
+					<source>
+						<LI_Source>
+							<sourceCitation>
+								<CI_Citation>
+									<title>
+										<gco:CharacterString> SRTM(Shuttle Radar Topography Mission) V4 Slope and Elevation DEM </gco:CharacterString>
+									</title>
+									<date gco:nilReason="unknown"/>
+									<citedResponsibleParty>
+										<CI_ResponsibleParty>
+											<organizationName>
+												<gco:CharacterString>CGIAR-CSI(Consortium for Spatial Information) and NASA</gco:CharacterString>
+											</organizationName>
+											<role>
+												<CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="originator" codeSpace="ISOTC211/19115">originator</CI_RoleCode>
+											</role>
+										</CI_ResponsibleParty>
+									</citedResponsibleParty>
+								</CI_Citation>
+							</sourceCitation>
+						</LI_Source>
+					</source>
+					<source>
+						<LI_Source>
+							<sourceCitation>
+								<CI_Citation>
+									<title>
+										<gco:CharacterString>MapSpace/PlanetSense POI</gco:CharacterString>
+									</title>
+									<date gco:nilReason="unknown"/>
+									<citedResponsibleParty>
+										<CI_ResponsibleParty>
+											<organizationName>
+												<gco:CharacterString>Oak Ridge National Laboratory</gco:CharacterString>
+											</organizationName>
+											<role>
+												<CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="originator" codeSpace="ISOTC211/19115">originator</CI_RoleCode>
+											</role>
+										</CI_ResponsibleParty>
+									</citedResponsibleParty>
+								</CI_Citation>
+							</sourceCitation>
+						</LI_Source>
+					</source>
+					<source>
+						<LI_Source>
+							<sourceCitation>
+								<CI_Citation>
+									<title>
+										<gco:CharacterString>LandScan Silver Edition</gco:CharacterString>
+									</title>
+									<date>
+										<CI_Date>
+											<date>
+												<gco:Date>2024-10-09</gco:Date>
+											</date>
+											<dateType>
+												<CI_DateTypeCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_DateTypeCode" codeListValue="publication" codeSpace="ISOTC211/19115">publication</CI_DateTypeCode>
+											</dateType>
+										</CI_Date>
+									</date>
+									<citedResponsibleParty>
+										<CI_ResponsibleParty>
+											<organizationName>
+												<gco:CharacterString> Geospatial Science and Human Security Division, Oak Ridge National Laboratory</gco:CharacterString>
+											</organizationName>
+											<role>
+												<CI_RoleCode codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode" codeListValue="originator" codeSpace="ISOTC211/19115">originator</CI_RoleCode>
+											</role>
+										</CI_ResponsibleParty>
+									</citedResponsibleParty>
+									<otherCitationDetails>
+										<gco:CharacterString>https://doi.org/10.48690/1531770</gco:CharacterString>
+									</otherCitationDetails>
+								</CI_Citation>
+							</sourceCitation>
+						</LI_Source>
+					</source>
+				</LI_Lineage>
+			</lineage>
+		</DQ_DataQuality>
+	</dataQualityInfo>
+</MD_Metadata>
