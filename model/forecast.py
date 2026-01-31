@@ -1,11 +1,11 @@
 import xarray as xr
 import pandas as pd
 
-from datetime import datetime
-
 from utils.tools import regions_from_xarray
+from db.mongo import MongoWrapper
+from pipeline.config import settings
 
-def compute_forcast_hdd(filepath):
+def compute_forcast_hdd(filepath, horizons):
     #Open the forecast dataset and format the datas
     ds = xr.open_dataset(filepath)
     forecast_date = ds.time.values #keep track of the forecast run date time
@@ -25,41 +25,96 @@ def compute_forcast_hdd(filepath):
     us_daily_hdd = (65 - us_daily).clip(min=0) #compute HDD
 
     #Open population file reggrided to weather forecasts
-    pop = xr.open_dataarray('../files/population_regridded_025deg.nc')
+    pop = xr.open_dataarray('utils/files/population_regridded_025deg.nc')
 
     hdd_weighted = us_daily_hdd * pop #Weight the hdd by population for each point in the grid and each valid_time
 
     #Compute HDD for every horizons
-    horizons = [(0,2, 'Day 1-3'), (3,6, 'Day 4-7'), (7,13, 'Day 8-14')]
     hdd_list = []
     for horizon in horizons:
         #Create horizon date for slicing
-        first_date = hdd_weighted.valid_time.min().values
-        start_date = first_date + pd.Timedelta(days=horizon[0])
-        last_date = first_date + pd.Timedelta(days=horizon[1])
+        start_date = min(horizon[0:2])
+        last_date = max(horizon[0:2])
 
         hdd_weighted_horizon = hdd_weighted.sel(valid_time=slice(start_date, last_date)).sum(dim='valid_time') #sumed HDD for every grid point in the horizon
 
         #Make US mean
         us_horizon_mean = hdd_weighted_horizon.mean(dim=['latitude', 'longitude']) #Mean every point in the US to have one mean weighted HDD for the horizon
-        hdd_list.append({'forecast_run_time': forecast_date, 'region': 'US Mean', 'horizon_start': start_date, 'horizon_end': last_date,
-                        'horizon_label': horizon[2], 'forecast_HDD': us_horizon_mean.t2m.values})
+        hdd_list.append({'forecast_run_time': forecast_date, 'region': 'US Mean', 'horizon_start': pd.Timestamp(start_date), 'horizon_end': pd.Timestamp(last_date),
+                        'horizon_label': horizon[2], 'forecast_HDD': us_horizon_mean.t2m.item()})
         
         #Make region means
         zone_means = regions_from_xarray(hdd_weighted_horizon)
 
         #For each zone in the horizon, make a new row of data
         for zone_name, zone_data in zone_means.items():
-            hdd_list.append({'forecast_run_time': forecast_date, 'region': zone_name, 'horizon_start': start_date, 'horizon_end': last_date,
-                            'horizon_label': horizon[2], 'forecast_HDD': zone_data.t2m.values})
+            hdd_list.append({'forecast_run_time': forecast_date, 'region': zone_name, 'horizon_start': pd.Timestamp(start_date), 'horizon_end': pd.Timestamp(last_date),
+                            'horizon_label': horizon[2], 'forecast_HDD': zone_data.t2m.item()})
             
     #Make a dataframe of values
     hdd_horizon_df = pd.DataFrame(hdd_list)
 
     return hdd_horizon_df
 
-def base_vs_forecast(filepath, base_filepath):
-    pass
+def base_vs_forecast(filepath, base_filepath, horizons):
+    #Load and format base HDD file
+    us_base_hdd = pd.read_csv(base_filepath)
+    us_base_hdd = us_base_hdd.rename(columns={'Unnamed: 0': 'doy'})
+    us_base_hdd = us_base_hdd.set_index('doy')
 
-def forecast_vs_forecast(filepath, last_forecast):
-    pass
+    #Compute HDD from forecast file
+    hdd_forecast = compute_forcast_hdd(filepath, horizons)
+
+    #Add day of year columns to prepare the sum of base days
+    hdd_forecast['doy_horizon_start'] = hdd_forecast['horizon_start'].dt.day_of_year
+    hdd_forecast['doy_horizon_end'] = hdd_forecast['horizon_end'].dt.day_of_year
+
+    #Prepare a list of horizon days with horizon label
+    horizon_doy = list(set([(start, end, label) for start, end, label in zip(hdd_forecast['doy_horizon_start'].values, 
+                                                                             hdd_forecast['doy_horizon_end'].values, 
+                                                                             hdd_forecast['horizon_label'].values)]))
+    
+    #Sum the mean base hdd for each day in each horzion and each region
+    hdd_horizon_list = []
+    for hd in horizon_doy:
+        us_base_hdd_horizon = us_base_hdd.loc[hd[0]:hd[1]]
+        summed_base_hdd_horizon = pd.DataFrame(us_base_hdd_horizon.T.sum(axis=1).reset_index())
+        summed_base_hdd_horizon = summed_base_hdd_horizon.rename(columns={'index': 'region', 0: 'sum_base_HDD'})
+        summed_base_hdd_horizon['horizon_label'] = hd[2]
+        hdd_horizon_list.append(summed_base_hdd_horizon)
+    full_hdd_base_horizon = pd.concat(hdd_horizon_list)
+
+    #Merge the sum base hdd and the forcast hdd on each region and each horizon
+    hdd_forecast_base = pd.merge(hdd_forecast, full_hdd_base_horizon, how='inner', on=['region', 'horizon_label'])
+    hdd_forecast_base['delta_forecast_base'] = hdd_forecast_base['forecast_HDD'] - hdd_forecast_base['sum_base_HDD'] #delta between forecast and base
+
+    return hdd_forecast_base
+
+def forecast_vs_forecast(current_run_filepath, previous_forecast):
+        #Get previous forecast as df and set prev horizon
+        previous_hdd = pd.DataFrame(previous_forecast)
+        if not previous_hdd.empty:
+            previous_hdd = previous_hdd.drop('_id', axis=1)
+            prev_forecast_horizon = list(set([(pd.Timestamp(start), pd.Timestamp(end), label) for start, end, label in zip(previous_hdd['horizon_start'].values, 
+                                                                                    previous_hdd['horizon_end'].values, 
+                                                                                    previous_hdd['horizon_label'].values)]))
+            
+        #Compute current forecast file with previous forecast time horizon
+        current_hdd_with_prev_horizon_df = compute_forcast_hdd(current_run_filepath, prev_forecast_horizon)
+
+        #Make sure that we have the same number of rows in both previous and current forecasts
+        assert len(previous_hdd) == len(current_hdd_with_prev_horizon_df)
+
+        #Format and merge and compute current - previous forecast
+        previous_hdd = previous_hdd.rename(columns={'forecast_run_time': 'prev_forecast_run_time', 'forecast_HDD': 'prev_forecast_HDD'})
+        current_and_prev_hdd = pd.merge(previous_hdd, current_hdd_with_prev_horizon_df, how='inner', on=['region', 'horizon_start', 'horizon_end', 'horizon_label'])
+        current_and_prev_hdd['delta_current_forecast_to_prev_forecast'] = current_and_prev_hdd['forecast_HDD'] - current_and_prev_hdd['prev_forecast_HDD']
+        delta_forecast_to_forecast = current_and_prev_hdd[['forecast_run_time', 'region', 'horizon_start', 'horizon_end', 'horizon_label', 'delta_current_forecast_to_prev_forecast']]
+        delta_forecast_to_forecast = delta_forecast_to_forecast.rename(columns={'horizon_start': 'prev_horizon_start', 'horizon_end': 'prev_horizon_end'})
+
+        return delta_forecast_to_forecast
+
+
+def full_forecast(base_forecast_data, forecast_vs_forecast_data):
+    full_hdd = pd.merge(base_forecast_data, forecast_vs_forecast_data, how='inner', on=['forecast_run_time', 'region', 'horizon_label']).reset_index(drop=True)
+    return full_hdd

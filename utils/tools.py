@@ -5,7 +5,7 @@ import xarray as xr
 
 def regions_from_xarray(dataset):
     #Load subregion shapefile
-    gdf = gpd.read_file('../utils/files/USRegion/12Regions/DOI_12_Unified_Regions_20180801.shp')
+    gdf = gpd.read_file('utils/files/USRegion/12Regions/DOI_12_Unified_Regions_20180801.shp')
     gdf = gdf.to_crs(epsg=4326) #reproject file into classical lat lon coordinates
     gdf = gdf[['REG_NAME', 'geometry']]
     gdf = gdf[~gdf['REG_NAME'].isin(['Alaska', 'Pacific Islands'])] #Remove both of these regions, irrelevant

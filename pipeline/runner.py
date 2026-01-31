@@ -9,7 +9,11 @@ class PipelineRunner:
     def run_forever(self):
         while True:
             try:
-                self.orchestrator.run()
+                processed = self.orchestrator.run()
+                if processed:
+                    logging.info("Processed data")
+                else:
+                    logging.info("Not processed")
 
             except Exception as e:
                 logging.exception("Erreur pipeline")

@@ -3,7 +3,12 @@ class ResultsRepository:
         self.col = mongo_client.collection(repo)
 
     def exists_for_date(self, date):
-        return self.col.count_documents({"date": date}) > 0
+        return self.col.count_documents({"forecast_run_time": date}) > 0
 
-    def insert_results(self, date, file_name, df_a, df_b):
-        pass
+    def insert_results(self, df):
+        records = df.to_dict('records')
+        self.col.insert_many(records)
+
+    def get_forecast(self, forecast_date):
+        query_res = self.col.find({'forecast_run_time': forecast_date})
+        return list(query_res)
