@@ -2,8 +2,6 @@ import xarray as xr
 import pandas as pd
 
 from utils.tools import regions_from_xarray
-from db.mongo import MongoWrapper
-from pipeline.config import settings
 
 def compute_forcast_hdd(filepath, horizons):
     #Open the forecast dataset and format the datas

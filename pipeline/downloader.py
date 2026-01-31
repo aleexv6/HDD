@@ -1,7 +1,7 @@
 from ecmwf.opendata import Client
 
 class Downloader:
-    def __init__(self, request, download_dir):
+    def __init__(self, request, download_dir=None):
         self.request = request 
         self.download_dir = download_dir
         self.client = Client(source="ecmwf")
@@ -9,8 +9,8 @@ class Downloader:
     def check_latest_available(self):
         latest_run_date = self.client.latest(
             step=0,
-            type=self.request['time'],
-            param=self.request['var'],
+            type=self.request['type'],
+            param=self.request['param'],
             target='None.grib2'
         )
 
