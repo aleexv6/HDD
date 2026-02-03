@@ -1,6 +1,8 @@
 import time
 import logging
 
+from utils.tools import is_run_release_time
+
 logger = logging.getLogger(__name__)
 
 class PipelineRunner:
@@ -10,12 +12,13 @@ class PipelineRunner:
 
     def run_forever(self):
         while True:
-            try:
-                processed = self.orchestrator.run()
-                if processed:
-                    logger.info("Processed data")
+            if is_run_release_time():
+                try:
+                    processed = self.orchestrator.run()
+                    if processed:
+                        logger.info("Processed data")
 
-            except Exception as e:
-                logger.exception("Erreur pipeline")
+                except Exception as e:
+                    logger.exception("Erreur pipeline")
 
             time.sleep(self.poll_interval)

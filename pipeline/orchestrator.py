@@ -14,11 +14,6 @@ class PipelineOrchestrator:
         self.repo = repo
 
     def run(self) -> bool:
-        """
-        Retourne True si un nouveau fichier a été traité
-        False sinon
-        """
-
         latest_run_date = self.downloader.check_latest_available() #check for available to download run datetime
         if latest_run_date.hour != 0 and latest_run_date.hour != 12: #if run is not from 00z or 12z -> dont compute
             logger.info("Current run not from 00z or 12z, retrying...")

@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 import xarray as xr
 
+from datetime import datetime, timezone
 import logging
 import sys
 from logging.handlers import RotatingFileHandler
@@ -67,3 +68,17 @@ def setup_logging(log_level=logging.INFO, log_file=None):
         level=log_level,
         handlers=handlers,
     )
+
+def is_run_release_time():
+    now = datetime.now(timezone.utc)
+    minutes = now.hour * 60 + now.minute
+
+    #00z window: 6am to 9am UTC
+    if 6 * 60 <= minutes < 9 * 60:
+        return True
+
+    #00z window: 6pm to 9pm UTC
+    if 18 * 60 <= minutes < 21 * 60:
+        return True
+
+    return False
