@@ -1,6 +1,8 @@
 import time
 import logging
 
+logger = logging.getLogger(__name__)
+
 class PipelineRunner:
     def __init__(self, orchestrator, poll_interval=300):
         self.orchestrator = orchestrator
@@ -11,11 +13,9 @@ class PipelineRunner:
             try:
                 processed = self.orchestrator.run()
                 if processed:
-                    logging.info("Processed data")
-                else:
-                    logging.info("Not processed")
+                    logger.info("Processed data")
 
             except Exception as e:
-                logging.exception("Erreur pipeline")
+                logger.exception("Erreur pipeline")
 
             time.sleep(self.poll_interval)

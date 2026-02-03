@@ -1,9 +1,19 @@
 
-
 #files
 *.grib2
 *.idx
 *.csv
+*.om
+*.cpg
+*.dbf
+*.prj 
+*.shp 
+*.xml
+*.shx 
+*.nc
+*.ris
+*.tif
+*.txt
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
