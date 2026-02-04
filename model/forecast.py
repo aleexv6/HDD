@@ -24,6 +24,7 @@ def compute_forcast_hdd(filepath, horizons):
 
     #Open population file reggrided to weather forecasts
     pop = xr.open_dataarray('utils/files/population_regridded_025deg.nc')
+    us_pop_sum = pop.sum(dim=['latitude', 'longitude'])
 
     hdd_weighted = us_daily_hdd * pop #Weight the hdd by population for each point in the grid and each valid_time
 
@@ -36,13 +37,15 @@ def compute_forcast_hdd(filepath, horizons):
 
         hdd_weighted_horizon = hdd_weighted.sel(valid_time=slice(start_date, last_date)).sum(dim='valid_time') #sumed HDD for every grid point in the horizon
 
-        #Make US mean
-        us_horizon_mean = hdd_weighted_horizon.mean(dim=['latitude', 'longitude']) #Mean every point in the US to have one mean weighted HDD for the horizon
+        #Make US sum
+        us_horizon_sum = hdd_weighted_horizon.sum(dim=['latitude', 'longitude']) #Sum every HDD point in the US to have one weighted HDD for the horizon
+        base_us_weighted_hdd = us_horizon_sum / us_pop_sum
+
         hdd_list.append({'forecast_run_time': forecast_date, 'region': 'US Mean', 'horizon_start': pd.Timestamp(start_date), 'horizon_end': pd.Timestamp(last_date),
-                        'horizon_label': horizon[2], 'forecast_HDD': us_horizon_mean.t2m.item()})
+                        'horizon_label': horizon[2], 'forecast_HDD': base_us_weighted_hdd.t2m.item()})
         
-        #Make region means
-        zone_means = regions_from_xarray(hdd_weighted_horizon)
+        #Make region sums
+        zone_means = regions_from_xarray(hdd_weighted_horizon, pop)
 
         #For each zone in the horizon, make a new row of data
         for zone_name, zone_data in zone_means.items():

@@ -8,7 +8,7 @@ import logging
 import sys
 from logging.handlers import RotatingFileHandler
 
-def regions_from_xarray(dataset):
+def regions_from_xarray(hdd_dataset, pop_dataset):
     #Load subregion shapefile
     gdf = gpd.read_file('utils/files/USRegion/12Regions/DOI_12_Unified_Regions_20180801.shp')
     gdf = gdf.to_crs(epsg=4326) #reproject file into classical lat lon coordinates
@@ -16,7 +16,7 @@ def regions_from_xarray(dataset):
     gdf = gdf[~gdf['REG_NAME'].isin(['Alaska', 'Pacific Islands'])] #Remove both of these regions, irrelevant
 
     #Make a point grid from dataset
-    lon_grid, lat_grid = np.meshgrid(dataset.longitude.values, dataset.latitude.values)
+    lon_grid, lat_grid = np.meshgrid(hdd_dataset.longitude.values, hdd_dataset.latitude.values)
     coords_flat = list(zip(lon_grid.ravel(), lat_grid.ravel()))
 
     #Make a gdf of dataset grid to prepare for spatial join
@@ -33,10 +33,18 @@ def regions_from_xarray(dataset):
     zone_means = {}
     for zone in gdf_joined['REG_NAME'].unique():
         zone_pts = gdf_joined[gdf_joined['REG_NAME'] == zone]
-        zone_data = dataset.sel(latitude=xr.DataArray(zone_pts['latitude'].values, dims='points'), #Select region points from the xarray dataset
-                                                        longitude=xr.DataArray(zone_pts['longitude'].values, dims='points'),
-                                                        method='nearest')
-        zone_means[zone] = zone_data.mean(dim='points') #mean the founded points and store in the dict
+        zone_data = hdd_dataset.sel(latitude=xr.DataArray(zone_pts['latitude'].values, dims='points'), #Select region points from the xarray dataset
+                                    longitude=xr.DataArray(zone_pts['longitude'].values, dims='points'),
+                                    method='nearest')
+        zone_pop = pop_dataset.sel(latitude=xr.DataArray(zone_pts['latitude'].values, dims='points'), #Select region points from the xarray dataset
+                                   longitude=xr.DataArray(zone_pts['longitude'].values, dims='points'),
+                                   method='nearest')
+        zone_hdd_sum = zone_data.sum(dim='points') #sum the founded points HDD
+        zone_pop_sum = zone_pop.sum(dim='points') #sum the pop
+
+        zone_hdd_sum_pop_weighted = zone_hdd_sum / zone_pop_sum
+        
+        zone_means[zone] = zone_hdd_sum_pop_weighted
 
     return zone_means
 
