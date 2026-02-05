@@ -1,10 +1,9 @@
-from datetime import timedelta
 import pandas as pd
 import logging
 
 from pipeline.config import settings
-
-from model.forecast import forecast_vs_forecast, base_vs_forecast, full_forecast
+from model.forecast import compute_forcast_hdd
+from utils.tools import print_forecast
 
 logger = logging.getLogger(__name__)
 
@@ -30,16 +29,12 @@ class PipelineOrchestrator:
             logger.info("No previous forecast found in database, retrying...")
             return False
 
-        #set up the horizons for current forecast
-        horizons = [(latest_run_date.date() + timedelta(days=1), latest_run_date.date() + timedelta(days=3), 'Day 1-3'),
-                    (latest_run_date.date() + timedelta(days=4), latest_run_date.date() + timedelta(days=7), 'Day 4-7'),
-                    (latest_run_date.date() + timedelta(days=8), latest_run_date.date() + timedelta(days=14), 'Day 8-14')]
-
         #compute HDDs
-        base_forecast = base_vs_forecast(filepath, settings.BASE_FILE_PATH, horizons)
-        forecast_forecast = forecast_vs_forecast(filepath, previous_run_data_list)
-        df = full_forecast(base_forecast, forecast_forecast)
+        df = compute_forcast_hdd(filepath)
 
         self.repo.insert_results(df) #insert results in db
+
+        #save img of current forecast
+        print_forecast(settings.BASE_FILE_PATH, df, settings.IMG_OUTPUT_PATH)
         
         return True
