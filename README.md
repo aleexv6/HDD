@@ -1,0 +1,1 @@
+![HDD img](utils/files/img/current_forecast.png)
