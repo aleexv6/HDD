@@ -3,7 +3,7 @@ import pandas as pd
 
 from utils.tools import regions_from_xarray
 
-def compute_forcast_hdd(filepath):
+def compute_forecast_hdd(filepath, latest_date):
     #Open the forecast dataset and format the datas
     ds = xr.open_dataset(filepath)
     forecast_date = ds.time.values #keep track of the forecast run date time
@@ -29,12 +29,12 @@ def compute_forcast_hdd(filepath):
     hdd_weighted = us_daily_hdd * pop #Weight the hdd by population for each point in the grid and each valid_time
 
     #Make US sum and format a df
-    hdd_weighted_sum = hdd_weighted.sum(dim=['latitude', 'longitude']) #Sum every HDD point in the US to have one weighted HDD for the horizon
+    hdd_weighted_sum = hdd_weighted.sum(dim=['latitude', 'longitude']) #Sum every HDD point in the US to have one weighted HDD
     hdd_weighted_sum_per_pop = hdd_weighted_sum / us_pop_sum
     hdd_weighted_sum_per_pop_df = hdd_weighted_sum_per_pop.to_dataframe().reset_index()
     hdd_weighted_sum_per_pop_df = hdd_weighted_sum_per_pop_df[['time', 'valid_time', 't2m']]
     hdd_weighted_sum_per_pop_df['time'] = forecast_date
-    hdd_weighted_sum_per_pop_df['region'] = 'US Mean'
+    hdd_weighted_sum_per_pop_df['region'] = 'US Sum'
     hdd_weighted_sum_per_pop_df = hdd_weighted_sum_per_pop_df.rename(columns={'t2m': 'hdd'})
 
     #Make regions sum and format a df
@@ -50,5 +50,51 @@ def compute_forcast_hdd(filepath):
     regions_hdd = pd.concat(region_list_hdd)
 
     total_hdds = pd.concat([hdd_weighted_sum_per_pop_df, regions_hdd]).reset_index(drop=True) #concat US and regions into a single df
+
+    total_hdds['source'] = 'ecmwf'
+    total_hdds['data_type'] = 'forecast'
+
+    return total_hdds
+
+def compute_observation_hdd(filepath, latest_date):
+    ds = xr.open_dataset(filepath)
+    ds = ds.sel(time=latest_date.tz_localize(None))
+    observation_date = ds.time.values
+    ds = (ds - 273.15) * 1.8 + 32 #Convert kelvin to °F
+    ds.attrs['units'] = '°F'
+
+    ds = ds.swap_dims({"step": "valid_time"})
+
+    ds_daily = ds.resample(valid_time="1D").mean()
+    ds_daily = ds_daily.sel(valid_time=latest_date.tz_localize(None))
+
+    ds_daily_hdd = (65 - ds_daily).clip(min=0) #compute HDD
+
+    #Open population file reggrided to weather forecasts
+    pop = xr.open_dataarray('utils/files/population_regridded_01deg_era5land_hourly.nc')
+    us_pop_sum = pop.sum(dim=['latitude', 'longitude'])
+
+    hdd_weighted = ds_daily_hdd * pop #Weight the hdd by population for each point in the grid and each valid_time
+
+    #Make US sum and format a df
+    hdd_weighted_sum = hdd_weighted.sum(dim=['latitude', 'longitude']) #Sum every HDD point in the US to have one weighted HDD for the horizon
+    hdd_weighted_sum_per_pop = hdd_weighted_sum / us_pop_sum
+    hdd_weighted_sum_per_pop_df = pd.DataFrame([{'time': observation_date,
+                                                 'region': 'US Sum', 
+                                                 'hdd': hdd_weighted_sum_per_pop.t2m.values.item()}])
+    
+    #Make regions sum and format a df
+    region_list_hdd = []
+    zone_means = regions_from_xarray(hdd_weighted, pop)
+    for zone_name, zone_date in zone_means.items():
+        region_list_hdd.append({'time': observation_date,
+                                'region': zone_name, 
+                                'hdd': zone_date.t2m.values.item()})
+    hdd_weighted_sum_per_pop_region_df = pd.DataFrame(region_list_hdd)
+
+    total_hdds = pd.concat([hdd_weighted_sum_per_pop_df, hdd_weighted_sum_per_pop_region_df]).reset_index(drop=True) #concat US and regions into a single df
+
+    total_hdds['source'] = 'era5_land'
+    total_hdds['data_type'] = 'observation'
 
     return total_hdds

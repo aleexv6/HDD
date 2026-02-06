@@ -1,5 +1,6 @@
 
 #files
+*.grib
 *.grib2
 *.idx
 *.csv

@@ -6,19 +6,20 @@ from utils.tools import is_run_release_time
 logger = logging.getLogger(__name__)
 
 class PipelineRunner:
-    def __init__(self, orchestrator, poll_interval=300):
-        self.orchestrator = orchestrator
+    def __init__(self, orchestrators, poll_interval=300):
+        self.orchestrators = orchestrators
         self.poll_interval = poll_interval
 
     def run_forever(self):
         while True:
             if is_run_release_time():
-                try:
-                    processed = self.orchestrator.run()
-                    if processed:
-                        logger.info("Processed data")
+                for orchestrator in self.orchestrators:
+                    try:
+                        processed = orchestrator.run()
+                        if processed:
+                            logger.info(f"Processed data for {orchestrator.downloader.name}")
 
-                except Exception as e:
-                    logger.exception("Erreur pipeline")
+                    except Exception as e:
+                        logger.exception(f"Erreur pipeline on {orchestrator.downloader.name}")
 
             time.sleep(self.poll_interval)
