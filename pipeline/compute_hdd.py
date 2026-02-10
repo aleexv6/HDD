@@ -53,7 +53,7 @@ def compute_forecast_hdd(filepath, latest_date):
 
     total_hdds['source'] = 'ecmwf'
     total_hdds['data_type'] = 'forecast'
-    total_hdds['winter_year'] = total_hdds['valid_time'].dt.to_period('Y-MAY').dt.start_time.dt.year
+    total_hdds['winter_year'] = total_hdds['valid_time'].dt.to_period('Y-JUL').dt.start_time.dt.year
 
     return total_hdds
 
@@ -97,6 +97,6 @@ def compute_observation_hdd(filepath, latest_date):
 
     total_hdds['source'] = 'era5_land'
     total_hdds['data_type'] = 'observation'
-    total_hdds['winter_year'] = total_hdds['time'].dt.to_period('Y-MAY').dt.start_time.dt.year
+    total_hdds['winter_year'] = total_hdds['time'].dt.to_period('Y-JUL').dt.start_time.dt.year
 
     return total_hdds
