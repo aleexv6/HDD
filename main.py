@@ -14,7 +14,7 @@ import logging
 
 def main():
     #Setup logging
-    setup_logging(log_level=logging.INFO)
+    setup_logging(log_level=logging.INFO, log_file='log/log.log')
     
     steps = [i for i in range(0, 144, 3)] + [j for j in range(144, 361, 6)] #get all steps
     var = '2t' #temperature at 2m

@@ -1,4 +1,4 @@
-from model.compute_hdd import compute_forecast_hdd, compute_observation_hdd
+from pipeline.compute_hdd import compute_forecast_hdd, compute_observation_hdd
 
 from ecmwf.opendata import Client
 import cdsapi

@@ -1,0 +1,32 @@
+name: geo
+channels:
+  - conda-forge
+dependencies:
+  - python[version='>=3.11']
+  - numpy
+  - pandas
+  - xarray
+  - zarr[version='>=3.0.0']
+  - fsspec
+  - dask
+  - geopandas
+  - shapely
+  - pyproj
+  - rasterio
+  - rioxarray
+  - cartopy
+  - matplotlib
+  - seaborn
+  - tqdm
+  - ipython
+  - jupyterlab
+  - pytest
+  - ipykernel
+  - requests
+  - aiohttp
+  - ecmwf-opendata
+  - cfgrib
+  - pip
+  - pymongo
+  - python-dotenv
+  - cdsapi
