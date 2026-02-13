@@ -13,10 +13,6 @@ def compute_forecast_hdd(filepath, latest_date):
 
     us = us.swap_dims({"step": "valid_time"})
 
-    #We slice the dataset with valid_times to avoid non complete day between 00z run (complete days) and 12z run (non complete days)
-    us = us.sel(valid_time=slice(pd.Timestamp(pd.Timestamp(ds.time.values).date()) + pd.Timedelta(days=1), #set the dataset at the start of the next day for our first window
-                                pd.Timestamp(pd.Timestamp(ds.time.values).date()) + pd.Timedelta(days=14, hours=23))) #and just before the last valid_time
-
     #Now that we start the first day at 00z for 00z run AND 12z run, resample hourly to daily
     us_daily = us.resample(valid_time="1D").mean()
 
